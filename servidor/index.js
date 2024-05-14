@@ -21,8 +21,9 @@ app.get("/", (req, res) => {
 app.post("/create-payment-intent", async (req, res) => {
     try {
         const payment_intent = {
-            amount: 1000,
+            amount: number(req.body.amount) || 1000,
             currency: 'clp',
+            customer_email: req.body.customer_email || "example@gmail.com",
             recipient_account: {
               holder_id: '771433855',
               number: '1836027172',
